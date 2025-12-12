@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema de Ponto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <!-- LOGO -->
+        <img src="logo.png" alt="Logo da Empresa" class="logo">
+
+        <h2>Sistema de Ponto</h2>
+
+        <div class="form">
+            <input type="email" id="email" placeholder="E-mail">
+            
+            <div class="senha-container">
+                <input type="password" id="senha" placeholder="Senha">
+                <span class="toggle-senha" onclick="toggleSenha()">Mostrar</span>
+            </div>
+
+            <button id="btnLogin">Entrar</button>
+
+            <p id="erro" class="erro"></p>
+        </div>
+    </div>
+
+    <script>
+        // Botão Mostrar/Ocultar
+        function toggleSenha() {
+            const senhaInput = document.getElementById("senha");
+            const toggleBtn = document.querySelector(".toggle-senha");
+
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                toggleBtn.textContent = "Ocultar";
+            } else {
+                senhaInput.type = "password";
+                toggleBtn.textContent = "Mostrar";
+            }
+        }
+    </script>
+</body>
+</html>
