@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MENU HAMBÚRGUER -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <!-- MENU ABERTO -->
+    <div id="menuBox" class="menu-box">
+        <button onclick="window.location.href='ponto.html'">Tela Inicial</button>
+        <button onclick="window.location.href='registros.html'">Registros</button>
+        <button onclick="window.location.href='#'">Ajustes</button>
+    </div>
+
+    <div class="ponto-container">
+
+        <!-- LOGO -->
+        <img src="logo.png" alt="Logo da Empresa" class="logo">
+
+        <!-- TÍTULO -->
+        <h2>PONTOS REGISTRADOS</h2>
+
+        <!-- LISTA DE MESES EM BOTÕES (um abaixo do outro) -->
+        <div class="lista-ponto">
+            <button class="mes-btn" data-mes="2026-01">JANEIRO | 2026</button>
+            <button class="mes-btn" data-mes="2025-12">DEZEMBRO | 2025</button>
+            <!-- adicionar outros meses se quiser -->
+        </div>
+
+        <!-- REGISTROS APARECEM SOMENTE AO CLICAR -->
+        <div id="registroAgrupado" class="registro-box"></div>
+
+    </div>
+
+    <script src="registros.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Ponto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- MENU HAMBÚRGUER -->
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<!-- MENU ABERTO -->
+<div id="menuBox" class="menu-box">
+    <button onclick="window.location.href='ponto.html'">Tela Inicial</button>
+    <button onclick="window.location.href='registros.html'">Registros</button>
+    <button onclick="window.location.href='#'">Ajustes</button>
+</div>
+
+
+    
+    <div class="ponto-container">
+
+        <img src="logo.png" alt="Logo da Empresa" class="logo">
+
+        <h2>Sistema Ponto</h2>
+
+
+        <!-- RELÓGIO ATUAL -->
+        <div id="relogioAtual" class="relogio-atual"></div>
+
+        <!-- BOTÃO -->
+        <button id="btnPonto">REGISTRAR</button>
+
+        <div class="registro-box">
+        <!-- Título dentro do registro-box -->
+        <div class="titulo-ponto">DEZEMBRO</div>
+
+        <!-- LISTA AGRUPADA -->
+        <div id="registroAgrupado" class="registro-box"></div>
+
+    </div>
+
+    <script src="ponto.js"></script>
+</body>
+</html>
