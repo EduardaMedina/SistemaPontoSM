@@ -81,7 +81,44 @@ function renderizarAgrupado() {
         return;
     }
 
-    // Agrupar por data
+    // 🔎 Estamos na tela ponto?
+    const ehTelaPonto = document.body.contains(
+        document.querySelector(".ponto-container")
+    );
+
+    // =========================
+    // TELA PONTO → CARDS
+    // =========================
+   if (ehTelaPonto) {
+    const hojeISO = new Date().toISOString().slice(0, 10);
+
+    todos
+        .filter(r => r.iso.slice(0, 10) === hojeISO)
+        .reverse()
+        .forEach(r => {
+
+            const data = r.iso.slice(0, 10).split("-");
+            const dataFormatada = `${data[2]}/${data[1]}/${data[0]}`;
+
+            const card = document.createElement("div");
+            card.className = "registro-card";
+            card.textContent = `${dataFormatada} - ${r.tipo}: ${r.hora}`;
+
+            area.appendChild(card);
+        });
+
+    if (area.children.length === 0) {
+        area.innerHTML = "<p>Nenhum ponto registrado hoje.</p>";
+    }
+
+    return;
+}
+
+
+    // =========================
+    // OUTRAS TELAS → TABELA
+    // =========================
+
     const grupos = {};
 
     todos.forEach(r => {
@@ -90,7 +127,6 @@ function renderizarAgrupado() {
         grupos[dataISO].push(r);
     });
 
-    // Montar tabela
     let html = `
         <table class="tabela-ponto">
             <tr>
@@ -102,34 +138,32 @@ function renderizarAgrupado() {
             </tr>
     `;
 
-    // Obter todas as datas e ordenar do mais recente para o mais antigo
-const datas = Object.keys(grupos).sort((a, b) => b.localeCompare(a));
+    const datas = Object.keys(grupos).sort((a, b) => b.localeCompare(a));
 
-datas.forEach(dataISO => {
-    const [ano, mes, dia] = dataISO.split("-");
-    const registros = grupos[dataISO];
+    datas.forEach(dataISO => {
+        const [ano, mes, dia] = dataISO.split("-");
+        const registros = grupos[dataISO];
 
-    // Distribuir em colunas por ordem registrada
-    const colunas = ["", "", "", ""]; // até 4 registros no dia
-    registros.forEach((r, index) => {
-        if (index < 4) colunas[index] = r.hora;
+        const colunas = ["", "", "", ""];
+        registros.forEach((r, index) => {
+            if (index < 4) colunas[index] = r.hora;
+        });
+
+        html += `
+            <tr>
+                <td>${dia}/${mes}/${ano}</td>
+                <td>${colunas[0] || "-"}</td>
+                <td>${colunas[1] || "-"}</td>
+                <td>${colunas[2] || "-"}</td>
+                <td>${colunas[3] || "-"}</td>
+            </tr>
+        `;
     });
-
-    html += `
-        <tr>
-            <td>${dia}/${mes}/${ano}</td>
-            <td>${colunas[0] || "-"}</td>
-            <td>${colunas[1] || "-"}</td>
-            <td>${colunas[2] || "-"}</td>
-            <td>${colunas[3] || "-"}</td>
-        </tr>
-    `;
-});
-
 
     html += "</table>";
     area.innerHTML = html;
 }
+
 
 
 

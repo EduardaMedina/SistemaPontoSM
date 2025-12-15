@@ -347,3 +347,18 @@ body {
     margin-top: 10px;
     height: 20px;
 }
+.lista-registros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.registro-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 220px;
+    font-size: 14px;
+}
