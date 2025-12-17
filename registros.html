@@ -14,8 +14,7 @@
     <!-- MENU ABERTO -->
     <div id="menuBox" class="menu-box">
         <button onclick="window.location.href='ponto.html'">Tela Inicial</button>
-        <button onclick="window.location.href='registros.html'">Registros</button>
-        <button onclick="window.location.href='#'">Ajustes</button>
+        <button onclick="window.location.href='registros.html'">Registros e Ajustes</button>
     </div>
 
     <div class="ponto-container">
@@ -26,14 +25,20 @@
         <!-- TÍTULO -->
         <h2>PONTOS REGISTRADOS</h2>
 
-        <!-- LISTA DE MESES EM BOTÕES (um abaixo do outro) -->
-        <div class="lista-ponto">
-            <button class="mes-btn" data-mes="2026-01">JANEIRO | 2026</button>
-            <button class="mes-btn" data-mes="2025-12">DEZEMBRO | 2025</button>
-            <!-- adicionar outros meses se quiser -->
-        </div>
+        <!-- BARRA DO MÊS SELECIONADO -->
+        <div class="barra-mes" id="barraMes" style="display:none;">
+    <span id="tituloMes">Registros</span>
 
-        <!-- REGISTROS APARECEM SOMENTE AO CLICAR -->
+    <button class="btn-voltar" onclick="voltarMeses()">
+        Selecionar outro mês
+    </button>
+</div>
+
+
+        <!-- LISTA DE MESES -->
+        <div class="lista-ponto" id="listaMeses"></div>
+
+        <!-- REGISTROS DO MÊS -->
         <div id="registroAgrupado" class="registro-box"></div>
 
     </div>
