@@ -23,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render inicial dos registros
     renderizarAgrupado();
+
+    // 👇 MÊS ATUAL AUTOMÁTICO
+    atualizarTituloMesAtual();
 });
 
 
@@ -87,42 +90,40 @@ function renderizarAgrupado() {
     );
 
     // =========================
-    // TELA PONTO → CARDS
+    // TELA PONTO → CARDS (HOJE)
     // =========================
-   if (ehTelaPonto) {
-    const hojeISO = new Date().toISOString().slice(0, 10);
+    if (ehTelaPonto) {
+        const hojeISO = new Date().toISOString().slice(0, 10);
 
-    todos
-        .filter(r => r.iso.slice(0, 10) === hojeISO)
-        .reverse()
-        .forEach(r => {
+        todos
+            .filter(r => r.iso.slice(0, 10) === hojeISO)
+            .reverse()
+            .forEach(r => {
 
-            const data = r.iso.slice(0, 10).split("-");
-            const dataFormatada = `${data[2]}/${data[1]}/${data[0]}`;
+                const data = r.iso.slice(0, 10).split("-");
+                const dataFormatada = `${data[2]}/${data[1]}/${data[0]}`;
 
-            const card = document.createElement("div");
-            card.className = "registro-card";
-            card.textContent = `${dataFormatada} - ${r.tipo}: ${r.hora}`;
+                const card = document.createElement("div");
+                card.className = "registro-card";
+                card.textContent = `${dataFormatada} - ${r.tipo}: ${r.hora}`;
 
-            area.appendChild(card);
-        });
+                area.appendChild(card);
+            });
 
-    if (area.children.length === 0) {
-        area.innerHTML = "<p>Nenhum ponto registrado hoje.</p>";
+        if (area.children.length === 0) {
+            area.innerHTML = "<p>Nenhum ponto registrado hoje.</p>";
+        }
+
+        return;
     }
-
-    return;
-}
-
 
     // =========================
     // OUTRAS TELAS → TABELA
     // =========================
-
     const grupos = {};
 
     todos.forEach(r => {
-        const dataISO = r.iso.slice(0,10);
+        const dataISO = r.iso.slice(0, 10);
         if (!grupos[dataISO]) grupos[dataISO] = [];
         grupos[dataISO].push(r);
     });
@@ -165,8 +166,6 @@ function renderizarAgrupado() {
 }
 
 
-
-
 // =======================
 // FUNÇÃO: RELÓGIO
 // =======================
@@ -176,17 +175,45 @@ function atualizarRelogio() {
         agora.toLocaleTimeString("pt-BR", { hour12: false });
 }
 
+
+// =======================
+// FUNÇÃO: MÊS ATUAL NO TÍTULO
+// =======================
+function atualizarTituloMesAtual() {
+    const titulo = document.getElementById("tituloMesAtual");
+    if (!titulo) return;
+
+    const agora = new Date();
+    const mes = agora.getMonth();
+    const ano = agora.getFullYear();
+
+    const meses = [
+        "JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL",
+        "MAIO", "JUNHO", "JULHO", "AGOSTO",
+        "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"
+    ];
+
+    titulo.textContent = `${meses[mes]} / ${ano}`;
+}
+
+
+// =======================
+// MENU
+// =======================
 function toggleMenu() {
     const box = document.getElementById("menuBox");
     const icon = document.querySelector(".menu-icon");
 
     if (box.style.left === "0px") {
-        // fechar menu
         box.style.left = "-240px";
-        icon.classList.remove("menu-aberto"); // ícone volta a preto
+        icon.classList.remove("menu-aberto");
     } else {
-        // abrir menu
         box.style.left = "0px";
-        icon.classList.add("menu-aberto"); // ícone permanece vermelho
+        icon.classList.add("menu-aberto");
     }
+}
+
+function sair() {
+    // Aqui podemos apenas voltar para a tela de login
+    window.location.href = "login.html";
 }

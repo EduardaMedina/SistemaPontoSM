@@ -695,3 +695,14 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+
+.menu-sair {
+    color: #d12d2d;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.menu-sair:hover {
+    text-decoration: underline;
+}

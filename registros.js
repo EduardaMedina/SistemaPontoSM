@@ -195,3 +195,8 @@ function toggleMenu() {
         icon.classList.add("menu-aberto");
     }
 }
+
+function sair() {
+    // Aqui podemos apenas voltar para a tela de login
+    window.location.href = "login.html";
+}
