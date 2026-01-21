@@ -11,7 +11,7 @@ function login() {
     // Usuários válidos
     const usuarios = {
         "eduarda@sm.com.br": "eduarda123", // alterado
-        "juliana@sm.com.br": "juliana123", // nova
+        "usuario@sm.com.br": "usuario123", // nova
         "alicia@sm.com.br": "alicia123",
         "rodrigo@sm.com.br": "rodrigo123"   // nova
     };
